@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎯 เกมทายเลข</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #000000;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #ff0000;
+    }
+    input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      width: 100px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 เกมทายเลขของกู 1-100</h1>
+  <input type="number" id="guess" min="1" max="100" placeholder="ใส่เลขของมึง">
+  <br>
+  <button onclick="checkGuess()">ทายดิ!</button>
+  <div id="message"></div>
+
+  <script>
+    const answer = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById("guess").value);
+      const msg = document.getElementById("message");
+      attempts++;
+
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        msg.innerText = "ใส่เลข 1-100 ไอ้สัส!";
+      } else if (guess === answer) {
+        msg.innerHTML = `🎉 ยินดีด้วย! มึงทายถูกใน ${attempts} ครั้ง`;
+      } else if (guess < answer) {
+        msg.innerText = "สูงกว่านี้ไอ้ควาย!";
+      } else {
+        msg.innerText = "ต่ำกว่านี้ไอ้เหี้ย!";
+      }
+    }
+  </script>
+</body>
+</html>
